@@ -1,117 +1,127 @@
+/* --- VARIABLES GLOBALES --- */
 :root {
-    --color-black: #000000;
-    --color-white: #ffffff;
+    --color-black: #000000;      /* Definimos el negro puro como una variable para reutilizarlo */
+    --color-white: #ffffff;      /* Definimos el blanco puro como una variable */
 }
 
+/* --- RESETEO --- */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box;      /* Los bordes y padding no afectan el ancho total del elemento */
+    margin: 0;                   /* Limpia espacios externos por defecto */
+    padding: 0;                  /* Limpia espacios internos por defecto */
 }
 
+/* --- ESTILOS DE CUERPO Y FONDO --- */
 body {
-    background: #00c9ff; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #92fe9d, #00c9ff); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #92fe9d, #00c9ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: var(--color-white);
-    font-family: "Noto Sans", sans-serif;
-    min-height: 100vh;
+    /* Degradado de fondo: se define varias veces para asegurar compatibilidad con navegadores viejos */
+    background: #00c9ff; 
+    background: -webkit-linear-gradient(to right, #92fe9d, #00c9ff); /* Para Safari y Chrome viejo */
+    background: linear-gradient(to right, #92fe9d, #00c9ff);        /* Versión moderna de izquierda a derecha */
+    color: var(--color-white);   /* Usa la variable blanca para el texto */
+    font-family: "Noto Sans", sans-serif; /* Fuente principal con respaldo sin remates */
+    min-height: 100vh;           /* Asegura que el fondo cubra al menos el 100% de la altura de la pantalla */
 }
 
+/* --- LAYOUT PRINCIPAL (GRID) --- */
 .container-main {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: 1fr 3fr;
-    margin: 20px auto;
-    max-width: 1500px;
-    padding: 40px auto;
-    width: 90%;
+    display: grid;               /* Crea una cuadrícula */
+    gap: 12px;                   /* Separación entre los elementos de la rejilla */
+    grid-template-columns: 1fr 3fr; /* Columna lateral pequeña y contenido principal 3 veces más grande */
+    margin: 20px auto;           /* Centra el contenedor y da margen arriba/abajo */
+    max-width: 1500px;           /* Evita que el diseño se estire demasiado en pantallas 4K */
+    padding: 40px auto;          /* Espaciado interno (Nota: el 'auto' en padding no es estándar, suele ser 0) */
+    width: 90%;                  /* El contenedor ocupa el 90% del ancho de la pantalla */
 }
 
+/* --- BANNER LATERAL --- */
 .banner {
-    background-position: center center;
-    background-size: cover;
-    border: 2px solid var(--color-white);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    text-align: center;
+    background-position: center center; /* Centra la imagen de fondo si tuviera una */
+    background-size: cover;      /* La imagen de fondo cubriría todo el espacio sin deformarse */
+    border: 2px solid var(--color-white); /* Marco blanco alrededor del banner */
+    border-radius: 10px;         /* Esquinas redondeadas */
+    display: flex;               /* Usamos flexbox para organizar el contenido interno */
+    flex-direction: column;      /* Apila los elementos (texto, lista, botón) verticalmente */
+    justify-content: space-between; /* Empuja el contenido hacia arriba y el botón hacia abajo */
+    padding: 20px;               /* Aire interno para que el contenido no toque los bordes */
+    text-align: center;          /* Centra el texto */
 }
 
 .banner ul {
-    list-style: none;
+    list-style: none;            /* Quita las viñetas de la lista */
 }
 
 .banner ul li {
-    font-weight: bold;
-    padding-bottom: 8px;
+    font-weight: bold;           /* Texto de la lista en negrita */
+    padding-bottom: 8px;         /* Separación entre cada ítem de la lista */
 }
 
+/* --- BOTONES CON TRANSICIONES --- */
 .banner .button {
-    background: cornflowerblue;
-    border: 3px solid var(--color-black);
-    border-radius: 100px;
-    color: var(--color-white);
-    cursor: pointer;
-    display: block;
+    background: cornflowerblue;  /* Color azul suave */
+    border: 3px solid var(--color-black); /* Borde negro grueso */
+    border-radius: 100px;        /* Botón con forma de píldora (totalmente redondeado) */
+    color: var(--color-white);   /* Texto blanco */
+    cursor: pointer;             /* Cambia el cursor a mano al pasar por encima */
+    display: block;              /* Ocupa todo el ancho disponible */
     font-family: "Noto Sans", sans-serif;
     font-size: 14px;
     font-weight: bold;
     padding: 10px;
     text-align: center;
-    transition: transform 0.2s;
-    width: 100%;
+    transition: transform 0.2s;  /* Suaviza la animación de crecimiento */
+    width: 100%;                 /* Asegura que llene su contenedor */
 }
 
 .banner .button:hover {
-    transform: scale(1.03);
+    transform: scale(1.03);      /* El botón crece un 3% cuando el ratón está encima */
 }
 
+/* --- SECCIÓN DE TARJETAS (GRID) --- */
 .container-cards {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;               /* Rejilla para las tarjetas */
+    gap: 10px;                   /* Espacio entre tarjetas */
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas exactamente iguales */
 }
 
 .card {
     background-position: center center;
     background-size: cover;
-    border-radius: 8px;
-    min-height: 210px;
+    border-radius: 8px;          /* Esquinas suavizadas */
+    min-height: 210px;           /* Altura mínima para que todas las tarjetas se vean uniformes */
     padding: 20px;
-    transition: transform 0.2s;
+    transition: transform 0.2s;  /* Animación para el efecto de hover */
 }
 
 .card:hover {
-    transform: scale(1.03);
+    transform: scale(1.03);      /* Efecto de "acercamiento" al pasar el ratón */
 }
 
 .card .texts {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    display: flex;               /* Flexbox para organizar el título y el subtítulo */
+    flex-direction: column;      /* Organización vertical */
+    justify-content: space-between; /* Título arriba, texto pequeño abajo */
+    height: 100%;                /* Ocupa todo el alto de la tarjeta */
 }
 
 .card .texts h5 {
-    text-align: right;
+    text-align: right;           /* Alinea los títulos de las tarjetas a la derecha */
 }
 
+/* --- LÍNEA SEPARADORA --- */
 hr {
-    background-color: var(--color-black);
+    background-color: var(--color-black); /* Color de la línea */
     color: var(--color-black);
-    height: 4px;
-    margin: 20px auto;
+    height: 4px;                 /* Grosor de la línea */
+    margin: 20px auto;           /* Centrada con espacio arriba y abajo */
     max-width: 1500px;
     width: 90%;
 }
 
+/* --- SECCIÓN DE INFORMACIÓN Y FORMULARIO --- */
 .container-info {
     display: grid;
     gap: 10px;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 1fr; /* Bloque de texto grande (3 partes) y formulario pequeño (1 parte) */
     margin: 20px auto;
     max-width: 1500px;
     padding: 40px auto;
@@ -119,53 +129,35 @@ hr {
 }
 
 .container-info .presentation {
-    background-color: var(--color-white);
+    background-color: var(--color-white); /* Fondo blanco para el texto de presentación */
     border: 2px solid var(--color-black);
     border-radius: 10px;
-    color: var(--color-black);
+    color: var(--color-black);   /* Texto negro para legibilidad */
     padding: 10px;
-    text-align: justify;
+    text-align: justify;         /* Distribuye el texto para que los bordes izquierdo y derecho estén alineados */
 }
 
 .container-info .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flex;               /* Organiza los campos del formulario */
+    flex-direction: column;      /* Uno debajo del otro */
+    justify-content: center;     /* Los centra verticalmente en su columna */
 }
 
-.container-info .form input {
-    border-radius: 8px;
-    margin-bottom: 14px;
-    padding: 6px;
+.container-info .form input, .container-info .form textarea {
+    border-radius: 8px;          /* Bordes curvos para los campos de texto */
+    margin-bottom: 14px;         /* Espacio entre campos */
+    padding: 6px;                /* Aire interno para que el texto no toque los bordes del campo */
 }
 
 .container-info .form textarea {
-    border-radius: 8px;
-    margin-bottom: 14px;
-    padding: 6px;
-    resize: none;
+    resize: none;                /* Evita que el usuario estire el cuadro de texto manualmente */
 }
 
-.container-info .form .button {
-    background: cornflowerblue;
-    border: 3px solid var(--color-black);
-    border-radius: 10px;
-    color: var(--color-white);
-    cursor: pointer;
-    display: block;
-    font-family: "Noto Sans", sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-    transition: transform 0.2s;
-    width: 100%;
-}
-
+/* --- GALERÍA DE IMÁGENES --- */
 .container-images {
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 imágenes por fila */
     margin: 20px auto;
     max-width: 1500px;
     padding: 40px auto;
@@ -173,40 +165,36 @@ hr {
 }
 
 .container-images img {
-    border: 2px solid var(--color-black);
+    border: 2px solid var(--color-black); /* Marco negro para cada foto */
     transition: transform 0.2s;
-    width: 100%;
+    width: 100%;                 /* La imagen se ajusta al ancho de su celda en la rejilla */
 }
 
 .container-images img:hover {
-    transform: scale(1.03);
+    transform: scale(1.03);      /* Efecto de zoom suave al pasar el ratón */
 }
 
-/* Media Queries */
+/* --- RESPONSIVE (MEDIA QUERIES) --- */
 
-/* Large devices (laptops/desktops, 992px and up) */
+/* Pantallas medianas (Laptops pequeñas / Tablets grandes) */
 @media only screen and (max-width: 992px) {
     .container-info .presentation {
-        font-size: 14px;
+        font-size: 14px;         /* Achicamos la letra para que quepa mejor */
     }
 
     .container-images {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr); /* Bajamos de 4 a 3 imágenes por fila */
     }
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
+/* Tablets en posición vertical */
 @media only screen and (max-width: 768px) {
-    .container-main {
-        grid-template-columns: 1fr;
+    .container-main, .container-info {
+        grid-template-columns: 1fr; /* Ya no hay columnas laterales, todo ocupa el ancho total */
     }
 
     .container-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .container-info {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* De 3 a 2 tarjetas por fila */
     }
 
     .container-info .presentation {
@@ -214,21 +202,17 @@ hr {
     }
 
     .container-images {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); /* De 3 a 2 imágenes por fila */
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Celulares (Pantallas pequeñas) */
 @media only screen and (max-width: 600px) {
-    .container-cards {
-        grid-template-columns: 1fr;
+    .container-cards, .container-images {
+        grid-template-columns: 1fr; /* Todo a una sola columna (vertical total) */
     }
 
     .container-info .presentation {
-        font-size: 11px;
-    }
-
-    .container-images {
-        grid-template-columns: 1fr;
+        font-size: 11px;         /* Letra pequeña para pantallas muy angostas */
     }
 }
